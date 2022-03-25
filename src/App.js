@@ -1,54 +1,58 @@
 import logo from './logo.svg';
 import './App.css';
-import { Container, Form, Nav, Navbar, NavDropdown,  } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
+import { useState } from 'react';
+
 
 
 function App() {
+  const [person, setperson] = useState({
+    name :"anjelina jolie",
+    bio:"Angelina Jolie DCMG is an American actress, filmmaker, and humanitarian. The recipient of numerous accolades, including an Academy Award and three Golden",
+    img:"https://media-mcetv.ouest-france.fr/wp-content/uploads/2021/08/angelina-jolie-se-mobilise-pour-les-refugies-du-monde-sur-instagram-min.jpg",
+    profession:"actrice",
+  } 
+  );
+  const [shows, setshows] = useState(true);
+  const [counter, setCounter] = useState(0);
+  const interval = setInterval(() => {
+    setCounter((prevCounter) => prevCounter + 1);
+  }, 1000);
   return (
     <div className="App">
-      <Navbar bg="light" expand="lg">
-  <Container>
-    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="me-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Link</Nav.Link>
-        <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-        </NavDropdown>
-      </Nav>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
+       
+          <div className='big-card'>
+          <button
+        type="button"
+        onClick={() => setshows(!shows)}
+      >click here</button>
 
+      {shows?(
+      <div className='card'>
+      <img src={person.img}/>
+      <div className='ctn'>
+      <h1>{person.name}</h1>
+      <h1>{person.profession}</h1>
+     </div>  
+     <ion-icon name="close-circle-outline"
+      onClick={() => setshows(!shows)}>
+      </ion-icon>
+      <p>{person.bio}</p>
+      </div> ):null}
 
-<Form>
-  <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
-    <Form.Text className="text-muted">
-      We'll never share your email with anyone else.
-    </Form.Text>
-  </Form.Group>
+      
+      
+      
+      
+      <div className="counter">
+      <h1>Counter: {counter}</h1>
+    </div>
 
-  <Form.Group className="mb-3" controlId="formBasicPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
-  </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group>
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-</Form>
-
+      
+  
+      </div>
+      
+  
+       
 </div>
     
   );
